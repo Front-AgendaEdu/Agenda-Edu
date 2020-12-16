@@ -5,7 +5,8 @@ import { useNavigation, CommonActions } from '@react-navigation/native'
 import AsyncStorage from '@react-native-community/async-storage'
 
 export async function login(email, psw, tryLogin, navigation) {
-
+	global.callLoginTest = true
+	
 	let sucecssesLogin = false
 
 	const request = new Request('https://frontend-test.agendaedu.com/api/login', {
@@ -55,7 +56,7 @@ export async function login(email, psw, tryLogin, navigation) {
 		.catch(error => {
 			if (tryLogin) {
 				Alert.alert(
-					`Erro de authenticação`,
+					`Erro de autenticação`,
 					`Credenciais incorretas.`,
 					[
 						{

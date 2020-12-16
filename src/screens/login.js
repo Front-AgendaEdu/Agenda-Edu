@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, TouchableOpacity, Keyboard, TouchableWithoutFeedback, } from 'react-native'
+import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, TouchableOpacity, Keyboard, TouchableWithoutFeedback, Platform} from 'react-native'
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import Styles from '../styles/styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
