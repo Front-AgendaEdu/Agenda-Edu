@@ -25,7 +25,7 @@ class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: 'student@ae.com',
+            // email: 'student@ae.com',
             psw: '',
             isVisiblePsw: false,
             label: "Login",
