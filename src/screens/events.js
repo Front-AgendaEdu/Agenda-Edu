@@ -1,14 +1,13 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, Dimensions, ScrollView, Image, LogBox, Animated, Alert, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Dimensions, Image, LogBox, Animated, Alert, ActivityIndicator, FlatList } from 'react-native'
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import AsyncStorage from '@react-native-community/async-storage'
-// import { auth2 } from '../functions/auth'
 import Styles from '../styles/styles'
 import { Drawer } from 'react-native-material-drawer'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import { Icon } from 'react-native-elements'
-import { Value } from 'react-native-reanimated'
+
 
 const auth = require('../functions/auth')
 
@@ -18,8 +17,8 @@ const screenHeight = Dimensions.get('window').height
 const widthPercent = (screenWidth / 100)
 const heightPercent = (screenHeight / 100)
 
-LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
-LogBox.ignoreAllLogs();//Ignore all log notifications
+LogBox.ignoreLogs(['Warning: ...']);
+LogBox.ignoreAllLogs();
 
 var dataComponent = []
 var metaDataComponent = []
@@ -31,8 +30,6 @@ options.timeZoneName = 'short';
 
 const curencyMonth = ["janeiro", "fevereiro", "março", "Abril", "Maio", "Junho", "Julho", "agosto", "setempro", "outubro", "novembro", "dezembro"]
 const weekday = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
-
-var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0))
 
 class Home extends React.Component {
 	constructor(props) {
@@ -46,7 +43,9 @@ class Home extends React.Component {
 			metadata: null,
 			dataLoad: false,
 			scrollY: new Animated.Value(0),
-			loadMore: true
+			loadMore: true,
+			dataComponent: [],
+			total_pages: 1,
 		}
 
 	}
@@ -56,14 +55,10 @@ class Home extends React.Component {
 			`https://frontend-test.agendaedu.com/api/events?limit=${this.state.limit};page=${this.state.page}`,
 			{
 				method: 'GET',
-				// mode: 'no-cors',
 				headers: {
 					token: await AsyncStorage.getItem('AUTH_TOKEN'),
 					Accept: 'application/json', 'Content-Type': 'application/json'
 				}
-				// body: JSON.stringify({
-				//   token: '3O701JINSMVIRtuuB7fY1SZ37bYIqDoPTs1auRYzHzLzxXXcuxvptQaowASztVJzAnGl6X00MRIZYjOTAN9SDt0rMZ47EfCNrAWB2oadSedsKbGGx2FRE9HnnloCs0sbONRvpqg5YmI7lrZ90RhrKGI',
-				// })
 			}
 		)
 
@@ -76,11 +71,6 @@ class Home extends React.Component {
 				}
 			})
 			.then(response => {
-				// this.setState({ data: response.data, metadata: response.metadata })
-
-
-				// dataComponent = []
-
 				response.data.forEach(function (item, indice) {
 					let sendAt = new Date(item.sendAt)
 					let startAt = new Date(item.startAt)
@@ -103,20 +93,18 @@ class Home extends React.Component {
 					})
 				});
 
-				console.debug(response)
+				 this.setState({total_pages: response.metadata.total_pages}) 
 
-
+	
 				dataComponent.sort(function (a, b) {
 					return new Date(a.sendAt).getTime() > new Date(b.sendAt).getTime() ? -1 : new Date(a.sendAt).getTime() < new Date(b.sendAt).getTime() ? 1 : 0
 				})
 
-				this.setState({ dataLoad: true })
-				this.setState({ loadMore: true })
+				this.setState({ dataComponent: dataComponent, dataLoad: true, loadMore: true })
 
 			})
 			.catch(error => {
 				console.log(`RESPONSE: ${JSON.stringify(error)} `)
-				// console.error(error)
 			})
 	}
 
@@ -139,8 +127,6 @@ class Home extends React.Component {
 		})
 
 		await this.getEvents()
-
-		// await auth.login() == true ? this.setState({label: "Sucesso"}) :  this.setState({label: "Credenciais Incorretas"})
 	}
 
 	_scrollView(f) {
@@ -154,9 +140,9 @@ class Home extends React.Component {
 	loadMoreData = async () => {
 		const { loadMore } = this.state
 		if (loadMore) {
-			await this.setState({ loadMore: false, page: this.state.page < 6 ? this.state.page + 1 : this.state.page })
+			await this.setState({ loadMore: false, page: this.state.page < this.state.total_pages ? this.state.page + 1 : this.state.page })
 
-			if (this.state.page < 6) {
+			if (this.state.page < this.state.total_pages) {
 				await this.getEvents()
 			} else {
 				this.setState({ loadMore: true })
@@ -164,8 +150,6 @@ class Home extends React.Component {
 
 			return
 		}
-
-		/*loading - set loadMore = false when done*/
 	}
 
 	isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
@@ -177,58 +161,6 @@ class Home extends React.Component {
 	render() {
 		const { navigation } = this.props
 
-
-		const dataComponentList = dataComponent.map((item, index) => {
-			return (
-				<View style={Styles.mainContainer}>
-					<View style={Styles.header}>
-						<View style={{ flex: 1.5 }}>
-							<Text style={Styles.headerLabel}>{`${item.weekday}, ${item.sendAt.getUTCDate()} de ${item.curencyMonth}`}</Text>
-						</View>
-						<View style={{ flex: 1.2 }}>
-							<View style={Styles.headerLine} />
-						</View>
-					</View>
-
-					<TouchableOpacity style={Styles.eventContainer}
-						onPress={() => { navigation.navigate("EventDetails", { item: item }) }}
-					>
-
-						<View style={Styles.eventLateralMarker} />
-						{item.image != null ?
-							<View style={Styles.imageView}>
-								<Image
-									style={Styles.cardImage}
-									// source={require('../assets/imgs/image.jpeg')}
-									source={{
-										uri: item.image,
-									}}
-								/>
-							</View>
-							:
-							null
-						}
-
-						<View style={Styles.eventContent} >
-							<Text style={Styles.eventContentType}>EVENTOS</Text>
-							{/* <Text style={Styles.eventTitle}>Aula especial de natação</Text> */}
-							<Text ellipsizeMode='tail' numberOfLines={1} style={Styles.eventTitle}>{`${item.title}`}</Text>
-							<View style={Styles.clockView}>
-								<EvilIcons
-									size={widthPercent * 6.5}
-									color="#666666"
-									containerStyle={{ backgroundColor: "#F00" }}
-									name={'clock'}
-								/>
-								<Text style={Styles.txtClock}>{item.editedTimeSendAt}</Text>
-							</View>
-							<Text style={Styles.eventDateTime}>{item.editedDataTimeStartAt}</Text>
-						</View>
-					</TouchableOpacity>
-				</View>
-			)
-		})
-
 		return (
 			<View style={styles.container}>
 				<Drawer
@@ -238,6 +170,7 @@ class Home extends React.Component {
 					drawerContent={
 						<View style={Styles.lateralMenu}>
 							<TouchableOpacity
+								testID={'eventCardButton'}
 								style={Styles.btnSair}
 								onPress={() => { this.setState({ page: 0 }), dataComponent = [], auth.logOut(navigation) }}
 							>
@@ -249,36 +182,73 @@ class Home extends React.Component {
 					animationTime={250}
 				>
 
-					<ScrollView
-						ref={(view) => this._scrollView = view}
-						// scrollEnabled={false}
-						// onScroll={this.handleScroll}
-
-						scrollEventThrottle={16}
-						onScroll={Animated.event(
-							[{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-							{
-								listener: event => {
-									if (this.isCloseToBottom(event.nativeEvent)) {
-										this.loadMoreData()
+						<FlatList
+							contentContainerStyle={{alignItems: 'center', paddingBottom: widthPercent * 5}}
+							ref={(view) => this._scrollView = view}
+							scrollEventThrottle={16}
+							onScroll={Animated.event(
+								[{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+								{
+									listener: event => {
+										if (this.isCloseToBottom(event.nativeEvent)) {
+											this.loadMoreData()
+										}
 									}
 								}
-							}
-						)}
-					>
-						{this.state.dataLoad ?
-							<View style={Styles.homeContainer}>
-								<View>{dataComponentList}</View>
-							</View>
-							:
-							null
-						}
-					</ScrollView>
+							)}
+							data={this.state.dataComponent}
+							renderItem={({ item }) =>
 
+								<View style={Styles.mainContainer}>
+									<View style={Styles.header}>
+										<View style={{ flex: 1.5 }}>
+											<Text style={Styles.headerLabel}>{`${item.weekday}, ${item.sendAt.getUTCDate()} de ${item.curencyMonth}`}</Text>
+										</View>
+										<View style={{ flex: 1.2 }}>
+											<View style={Styles.headerLine} />
+										</View>
+									</View>
+
+									<TouchableOpacity style={Styles.eventContainer}
+										onPress={() => { navigation.navigate("EventDetails", { item: item }) }}
+									>
+
+										<View style={Styles.eventLateralMarker} />
+										{item.image != null ?
+											<View style={Styles.imageView}>
+												<Image
+													style={Styles.cardImage}
+													source={{
+														uri: item.image,
+													}}
+												/>
+											</View>
+											:
+											null
+										}
+
+										<View style={Styles.eventContent} >
+											<Text style={Styles.eventContentType}>EVENTOS</Text>
+											<Text ellipsizeMode='tail' numberOfLines={1} style={Styles.eventTitle}>{`${item.title}`}</Text>
+											<View style={Styles.clockView}>
+												<EvilIcons
+													size={widthPercent * 6.5}
+													color="#666666"
+													containerStyle={{ backgroundColor: "#F00" }}
+													name={'clock'}
+												/>
+												<Text style={Styles.txtClock}>{item.editedTimeSendAt}</Text>
+											</View>
+											<Text style={Styles.eventDateTime}>{item.editedDataTimeStartAt}</Text>
+										</View>
+									</TouchableOpacity>
+								</View>
+							}
+						/>
 					{!this.state.loadMore
 						?
 						<View style={Styles.loadView}>
-							<Text style={Styles.txtLoadingEvents}>Carregando...</Text>
+							<Text style={Styles.txtLoadingEvents}>{`Carregando...`}</Text>
 						</View>
 						:
 						null

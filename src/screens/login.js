@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, TouchableOpacity, Keyboard, TouchableWithoutFeedback, Platform} from 'react-native'
+import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, TouchableOpacity, Keyboard, TouchableWithoutFeedback, Platform } from 'react-native'
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import Styles from '../styles/styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import * as Font from 'expo-font'
-import { AppLoading } from 'expo'
+
 
 const screenHeight = Math.round(Dimensions.get('window').height)
 const screenWidth = Math.round(Dimensions.get('window').width)
@@ -19,9 +18,10 @@ const DismissKeyboard = ({ children }) => (
     </TouchableWithoutFeedback>
 );
 
+global.isVisiblePsw = false
 const auth = require('../functions/auth')
 
-class Login extends React.Component {
+export class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -35,13 +35,13 @@ class Login extends React.Component {
     }
 
     async componentDidMount() {
-
+        
     }
 
     render() {
         const { navigation } = this.props
+
         return (
-            // <View style={Styles.container}>
             <DismissKeyboard>
                 <KeyboardAvoidingView style={Styles.container} behavior="padding" enabled={Platform.OS === 'ios' ? true : false} >
 
@@ -57,9 +57,10 @@ class Login extends React.Component {
 
                             <View style={Styles.ViewLoginInput}>
                                 <TextInput
+                                    testID={'inputEmail'}
                                     style={[Styles.loginInput, { borderColor: this.state.borderColorEmail }]}
                                     value={this.state.email}
-                                    onFocus={() => { this.setState({ borderColorEmail: '#733DBE' }) }}
+                                    onFocus={() => { this.setState({ borderColorEmail: '#733DBE' }), global.inputEmail = true }}
                                     onBlur={() => { this.setState({ borderColorEmail: '#ABB1B7' }) }}
                                     autoCapitalize={'none'}
                                     onChangeText={value => { this.setState({ email: value }) }}
@@ -85,22 +86,23 @@ class Login extends React.Component {
 
                             <View style={Styles.ViewLoginInput}>
                                 <TextInput
+                                    testID={'inputPassword'}
                                     style={[Styles.loginInput, { borderColor: this.state.borderColorPsw }]}
                                     value={this.state.psw}
-                                    // placeholder={'E-mail'}
-                                    onFocus={() => { this.setState({ borderColorPsw: '#733DBE' }) }}
+                                    onFocus={() => { this.setState({ borderColorPsw: '#733DBE' }), global.inputPassword = true}}
                                     onBlur={() => { this.setState({ borderColorPsw: '#ABB1B7' }) }}
                                     autoCapitalize={'none'}
                                     onChangeText={value => { this.setState({ psw: value }) }}
                                     placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                                     underlineColorAndroid='transparent'
-                                    // keyboardType={''}
                                     secureTextEntry={!this.state.isVisiblePsw}
 
                                 />
                                 <TouchableOpacity
+                                    testID={'showPswBtn'}
                                     style={Styles.btnChangeVisblePsw}
-                                    onPress={() => { this.setState({ isVisiblePsw: !this.state.isVisiblePsw }) }}
+                                    onPress={() => { this.setState({ isVisiblePsw: !this.state.isVisiblePsw }), global.isVisiblePsw = !this.state.isVisiblePsw }}
+
                                 >
                                     <MaterialCommunityIcons
                                         name={this.state.isVisiblePsw == true ? 'eye-off' : 'eye'}
@@ -110,15 +112,6 @@ class Login extends React.Component {
                                 </TouchableOpacity>
                             </View>
                         </View>
-
-
-                        {/* <TouchableOpacity
-                        style={Styles.btnEntrar}
-                        onPress={() => { this.setState({ isVisiblePsw: !this.state.isVisiblePsw }) }}
-                    >
-                        <Text style={Styles.labelBtnEntrar}>Entrar</Text>
-                    </TouchableOpacity>
-                    <StatusBar style='auto' /> */}
                     </View >
 
 
@@ -136,7 +129,6 @@ class Login extends React.Component {
 
                 </KeyboardAvoidingView>
             </DismissKeyboard>
-            //// </View >
         )
     }
 }

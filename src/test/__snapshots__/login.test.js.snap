@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`##SNAPSHOT## Login Snapshot 1`] = `
+<View
+  accessible={true}
+  focusable={true}
+  onClick={[Function]}
+  onLayout={[Function]}
+  onResponderGrant={[Function]}
+  onResponderMove={[Function]}
+  onResponderRelease={[Function]}
+  onResponderTerminate={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFF",
+        "flex": 1,
+        "flexDirection": "column",
+        "height": null,
+        "justifyContent": "center",
+        "width": null,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFF",
+        "flex": 1,
+        "flexDirection": "column",
+        "height": null,
+        "justifyContent": "center",
+        "width": null,
+      }
+    }
+  >
+    <View
+      style={Object {}}
+    >
+      <Text
+        style={
+          Object {
+            "color": "#333333",
+            "fontFamily": "SFProDisplay-Bold",
+            "fontSize": 54,
+            "marginBottom": 60,
+          }
+        }
+      >
+        Faça seu login 🔑
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#666666",
+            "fontFamily": "SFProDisplay-Regular",
+            "fontSize": 31.5,
+            "marginBottom": 11.25,
+          }
+        }
+      >
+        Email ou usuário
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          keyboardType="email-address"
+          onBlur={[Function]}
+          onChangeText={[Function]}
+          onFocus={[Function]}
+          placeholderTextColor="rgba(0, 0, 0, 0.5)"
+          rejectResponderTermination={true}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#FFF",
+                "borderColor": "#733DBE",
+                "borderRadius": 7.5,
+                "borderWidth": 1,
+                "color": "#333333",
+                "fontFamily": "SFProDisplay-Regular",
+                "fontSize": 37.5,
+                "height": 126.73,
+                "paddingLeft": "7%",
+                "paddingRight": "14%",
+                "width": 654,
+              },
+              Object {
+                "borderColor": "#ABB1B7",
+              },
+            ]
+          }
+          testID="inputEmail"
+          underlineColorAndroid="transparent"
+          value="student@ae.com"
+        />
+        <Icon
+          color="#AAAAAA"
+          name="email-outline"
+          size={60}
+          style={
+            Object {
+              "alignSelf": "center",
+              "position": "absolute",
+              "right": 22.5,
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 26.68,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "#666666",
+            "fontFamily": "SFProDisplay-Regular",
+            "fontSize": 31.5,
+            "marginBottom": 11.25,
+          }
+        }
+      >
+        Senha
+      </Text>
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <TextInput
+          allowFontScaling={true}
+          autoCapitalize="none"
+          onBlur={[Function]}
+          onChangeText={[Function]}
+          onFocus={[Function]}
+          placeholderTextColor="rgba(0, 0, 0, 0.5)"
+          rejectResponderTermination={true}
+          secureTextEntry={true}
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#FFF",
+                "borderColor": "#733DBE",
+                "borderRadius": 7.5,
+                "borderWidth": 1,
+                "color": "#333333",
+                "fontFamily": "SFProDisplay-Regular",
+                "fontSize": 37.5,
+                "height": 126.73,
+                "paddingLeft": "7%",
+                "paddingRight": "14%",
+                "width": 654,
+              },
+              Object {
+                "borderColor": "#ABB1B7",
+              },
+            ]
+          }
+          testID="inputPassword"
+          underlineColorAndroid="transparent"
+          value=""
+        />
+        <View
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            Object {
+              "alignItems": "center",
+              "alignSelf": "center",
+              "height": 75,
+              "justifyContent": "center",
+              "opacity": 1,
+              "position": "absolute",
+              "right": 22.5,
+              "width": 75,
+            }
+          }
+          testID="showPswBtn"
+        >
+          <Icon
+            color="#AAAAAA"
+            name="eye"
+            size={60}
+          />
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "backgroundColor": "#FFF",
+        "justifyContent": "center",
+        "width": "100%",
+      }
+    }
+  >
+    <View
+      accessible={true}
+      focusable={true}
+      onClick={[Function]}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "alignItems": "center",
+          "alignSelf": "center",
+          "backgroundColor": "#733DBE",
+          "borderRadius": 15,
+          "bottom": 0,
+          "height": 112.5,
+          "justifyContent": "center",
+          "marginBottom": "7%",
+          "opacity": 1,
+          "width": "82%",
+        }
+      }
+      testID="entryButton"
+    >
+      <Text
+        style={
+          Object {
+            "color": "#FFFFFF",
+            "fontFamily": "SFProDisplay-Semibold",
+            "fontSize": 37.5,
+          }
+        }
+        testID="textButton"
+      >
+        Entrar
+      </Text>
+    </View>
+  </View>
+</View>
+`;

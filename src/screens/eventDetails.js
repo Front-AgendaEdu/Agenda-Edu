@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, TouchableOpacity, ImageBackground, ScrollView } from 'react-native'
+import { Text, View, Dimensions, ImageBackground, ScrollView } from 'react-native'
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import Styles from '../styles/styles'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import EvilIcons from 'react-native-vector-icons/EvilIcons'
 import * as Font from 'expo-font'
 import { AppLoading } from 'expo'
@@ -35,22 +34,17 @@ class EventDetails extends React.Component {
 
     render() {
         const { navigation, item } = this.props
-
-
+        
         return (
             <View style={Styles.container}>
                 <ImageBackground source={require('../assets/imgs/image.jpeg')} style={Styles.eventDetailsBackground}>
                     <View style={Styles.containerDetails}>
                         <View style={Styles.headersDetailsView}>
                             <View style={Styles.dateView}>
-
                                 <View style={Styles.txtDayMonthView}>
                                     <Text style={Styles.txtDayMonth}>{item.sendAt.getDate()}</Text>
-                                    <Text style={Styles.txtMonth}>{ item.curencyMonth.substring(0, 3).toUpperCase()}</Text>
+                                    <Text style={Styles.txtMonth}>{item.curencyMonth.substring(0, 3).toUpperCase()}</Text>
                                 </View>
-                                {/* <View style={Styles.txtMonthView}>
-                                    <Text style={Styles.txtMonth}>JAN</Text>
-                                </View> */}
                             </View>
                             <View style={Styles.eventDetailsTitleView}>
                                 <Text style={Styles.eventDetailsTitle}>{item.title}</Text>
@@ -65,7 +59,6 @@ class EventDetails extends React.Component {
                                 containerStyle={{ backgroundColor: "#F00" }}
                                 name={'clock'}
                             />
-                            {/* <Text style={Styles.txtClock}>{`${item.sendAt.getHours() < 10 ? `0${item.sendAt.getHours()}` : item.sendAt.getHours()}:00`}</Text> */}
                             <Text style={Styles.txtClock}>{item.editedTimeSendAt}</Text>
 
                         </View>

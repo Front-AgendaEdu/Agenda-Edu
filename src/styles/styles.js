@@ -11,8 +11,6 @@ const heightPercent = (screenHeight / 100)
 
 
 export default StyleSheet.create({
-
-
     container: {
         flex: 1,
         flexDirection: "column",
@@ -41,7 +39,6 @@ export default StyleSheet.create({
         height: null,
     },
     btnEntrarContainer: {
-        // flex: 0.2,
         width: '100%',
         backgroundColor: '#FFF',
         alignItems: 'center',
@@ -126,7 +123,6 @@ export default StyleSheet.create({
         backgroundColor: '#FFF',
         alignItems: 'center',
         paddingBottom: heightPercent * 5,
-        // justifyContent: 'center',
         width: null,
         height: null,
     },
@@ -134,17 +130,14 @@ export default StyleSheet.create({
         width: '88%',
         alignItems: "center",
         marginTop: heightPercent * 5,
-        // backgroundColor: '#0FF',
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
-        // backgroundColor: '#FFF',
         justifyContent: "space-between",
         marginBottom: heightPercent * 2,
     },
     headerLine: {
-        // backgroundColor: '#F00',
         borderBottomColor: '#C3CBD2',
         borderBottomWidth: 1,
         justifyContent: "flex-start",
@@ -160,18 +153,12 @@ export default StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         borderRadius: widthPercent * 2,
-        // backgroundColor: '#F00',
         marginTop: heightPercent * 1.5,
-        // borderWidth: 1,
-        // borderColor: '#733DBE1A',
         shadowColor: '#733DBE1A',
         shadowOffset: { width: 8, height: 8 },
         shadowOpacity: 1,
         elevation: widthPercent * 2,
         backgroundColor: '#FFF',
-
-
-        // elevation: 5,
     },
     eventLateralMarker: {
         width: '2.5%',
@@ -179,7 +166,6 @@ export default StyleSheet.create({
         backgroundColor: '#733DBE',
         borderTopLeftRadius: widthPercent * 2,
         borderBottomLeftRadius: widthPercent * 2,
-
     },
     eventContent: {
         flex: 1,
@@ -202,7 +188,6 @@ export default StyleSheet.create({
         borderRadius: widthPercent * 18,
     },
     eventContentType: {
-        // fontFamily: 'SFProDisplay-Regular',
         fontFamily: 'SFProDisplay-Medium',
         fontSize: widthPercent * 4,
         color: '#999999',
@@ -216,7 +201,6 @@ export default StyleSheet.create({
         color: '#333333',
         marginTop: widthPercent * 2,
         marginLeft: widthPercent * 3.5,
-        // backgroundColor: "#F00",
         width: '80%'
     },
     clockView: {
@@ -239,8 +223,6 @@ export default StyleSheet.create({
         fontSize: widthPercent * 3.2,
         marginLeft: heightPercent * 2,
         marginTop: heightPercent * 1,
-        // backgroundColor: '#733DBE',
-
     },
     lateralMenu: {
         paddingVertical: widthPercent * 5
@@ -264,8 +246,6 @@ export default StyleSheet.create({
         bottom: 0,
         borderTopLeftRadius: widthPercent * 7,
         borderTopRightRadius: widthPercent * 7,
-        // paddingHorizontal: widthPercent * 8,
-        // paddingVertical: widthPercent * 8,
         justifyContent: "center",
         alignItems: "center",
     },
@@ -296,8 +276,6 @@ export default StyleSheet.create({
     },
     headersDetailsView: {
         width: '100%',
-        // height: '20%',
-        // backgroundColor: '#F00',
         flexDirection: "row",
         alignItems: "center",
     },
@@ -309,7 +287,6 @@ export default StyleSheet.create({
     },
     txtDayMonthView: {
         flex: 1,
-        // backgroundColor: '#F00',
         justifyContent: "center",
         alignItems: "center"
     },
@@ -322,7 +299,6 @@ export default StyleSheet.create({
     },
     txtMonthView: {
         flex: 1,
-        // backgroundColor: '#F0F',
         justifyContent: "flex-end",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -334,30 +310,20 @@ export default StyleSheet.create({
     },
     eventDetailsTitleView: {
         width: '90%',
-        // height: '100%',
         borderRadius: widthPercent * 2,
-        // alignItems: "center",
-        // justifyContent: "center",
-        // backgroundColor: '#F0F',
         textAlignVertical: "center",
     },
     eventDetailsTitle: {
         fontSize: widthPercent * 6,
         fontFamily: 'SFProDisplay-Bold',
         marginLeft: widthPercent * 4,
-        // marginTop: widthPercent * 4,
-        // alignSelf: "center",
     },
     eventDetailsClock: {
-        // marginTop: widthPercent * 3,
-        // marginLeft: widthPercent * 3,
-
+       
     },
     headersClockDetailsView: {
         width: '76%',
         marginTop: widthPercent * 2.5,
-        // height: '20%',
-        // backgroundColor: '#FF0',
         flexDirection: "row",
         alignItems: "center",
 
@@ -366,7 +332,6 @@ export default StyleSheet.create({
         width: '100%',
         height: '60%',
         marginTop: widthPercent * 8,
-        // backgroundColor: '#FF0',
         flexDirection: "row",
     },
     txtEventDescription: {
