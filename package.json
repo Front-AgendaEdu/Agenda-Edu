@@ -12,9 +12,7 @@
 		"preset": "jest-expo",
 		"transformIgnorePatterns": [
 			"node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.|react-navigation|@react-navigation/.|@unimodules/.|unimodules|sentry-expo|native-base|@sentry/.)"
-    ],
-    "setupFilesAfterEnv": ["./node_modules/jest-enzyme/lib/index.js"],
-      "setupFiles": ["enzyme-react-16-adapter-setup"]
+    ]
 	},
 	"dependencies": {
 		"@react-native-community/async-storage": "~1.12.0",
