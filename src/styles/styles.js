@@ -25,7 +25,7 @@ export default StyleSheet.create({
     txtLoading: {
         fontSize: widthPercent * 7,
         fontFamily: 'SFProDisplay-Bold',
-        color: '#333333',
+        color: '#FFF',
     },
 
     // ../screens/login.js
@@ -88,7 +88,6 @@ export default StyleSheet.create({
         position: "absolute",
         right: widthPercent * 3,
         alignSelf: "center"
-
     },
     btnChangeVisblePsw: {
         position: "absolute",
@@ -326,7 +325,6 @@ export default StyleSheet.create({
         marginTop: widthPercent * 2.5,
         flexDirection: "row",
         alignItems: "center",
-
     },
     descriptionView: {
         width: '100%',

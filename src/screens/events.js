@@ -10,6 +10,7 @@ import { Icon } from 'react-native-elements'
 
 
 const auth = require('../functions/auth')
+const styled = require('../styledComponets/styles')
 
 const screenWidth = Dimensions.get('window').width
 const screenHeight = Dimensions.get('window').height
@@ -37,7 +38,7 @@ class Home extends React.Component {
 		this.state = {
 			label: "Eventos",
 			isOpen: false,
-			limit: 3,
+			limit: 5,
 			page: 1,
 			data: null,
 			metadata: null,
@@ -93,9 +94,9 @@ class Home extends React.Component {
 					})
 				});
 
-				 this.setState({total_pages: response.metadata.total_pages}) 
+				this.setState({ total_pages: response.metadata.total_pages })
 
-	
+
 				dataComponent.sort(function (a, b) {
 					return new Date(a.sendAt).getTime() > new Date(b.sendAt).getTime() ? -1 : new Date(a.sendAt).getTime() < new Date(b.sendAt).getTime() ? 1 : 0
 				})
@@ -162,125 +163,102 @@ class Home extends React.Component {
 		const { navigation } = this.props
 
 		return (
-			<View style={styles.container}>
-				<Drawer
-					style={{ justifyContent: "center" }}
+			<styled.Container>
+				<styled.drawer
 					width={widthPercent * 70}
 					open={this.state.isOpen}
 					drawerContent={
-						<View style={Styles.lateralMenu}>
-							<TouchableOpacity
+						<styled.drawerView>
+							<styled.btnSair
 								testID={'eventCardButton'}
-								style={Styles.btnSair}
 								onPress={() => { this.setState({ page: 0 }), dataComponent = [], auth.logOut(navigation) }}
 							>
-								<Text style={Styles.labelBtnEntrar}>Sair</Text>
-							</TouchableOpacity>
-						</View>
+								<styled.labelBtn>Sair</styled.labelBtn>
+							</styled.btnSair>
+						</styled.drawerView>
 					}
 					onClose={() => this.setState({ isOpen: false })}
 					animationTime={250}
 				>
 
-						<FlatList
-							contentContainerStyle={{alignItems: 'center', paddingBottom: widthPercent * 5}}
-							ref={(view) => this._scrollView = view}
-							scrollEventThrottle={16}
-							onScroll={Animated.event(
-								[{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-								{
-									listener: event => {
-										if (this.isCloseToBottom(event.nativeEvent)) {
-											this.loadMoreData()
-										}
+					<FlatList
+						contentContainerStyle={{ alignItems: 'center', paddingBottom: widthPercent * 5 }}
+						ref={(view) => this._scrollView = view}
+						scrollEventThrottle={16}
+						onScroll={Animated.event(
+							[{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
+							{
+								listener: event => {
+									if (this.isCloseToBottom(event.nativeEvent)) {
+										this.loadMoreData()
 									}
 								}
-							)}
-							data={this.state.dataComponent}
-							renderItem={({ item }) =>
-
-								<View style={Styles.mainContainer}>
-									<View style={Styles.header}>
-										<View style={{ flex: 1.5 }}>
-											<Text style={Styles.headerLabel}>{`${item.weekday}, ${item.sendAt.getUTCDate()} de ${item.curencyMonth}`}</Text>
-										</View>
-										<View style={{ flex: 1.2 }}>
-											<View style={Styles.headerLine} />
-										</View>
-									</View>
-
-									<TouchableOpacity style={Styles.eventContainer}
-										onPress={() => { navigation.navigate("EventDetails", { item: item }) }}
-									>
-
-										<View style={Styles.eventLateralMarker} />
-										{item.image != null ?
-											<View style={Styles.imageView}>
-												<Image
-													style={Styles.cardImage}
-													source={{
-														uri: item.image,
-													}}
-												/>
-											</View>
-											:
-											null
-										}
-
-										<View style={Styles.eventContent} >
-											<Text style={Styles.eventContentType}>EVENTOS</Text>
-											<Text ellipsizeMode='tail' numberOfLines={1} style={Styles.eventTitle}>{`${item.title}`}</Text>
-											<View style={Styles.clockView}>
-												<EvilIcons
-													size={widthPercent * 6.5}
-													color="#666666"
-													containerStyle={{ backgroundColor: "#F00" }}
-													name={'clock'}
-												/>
-												<Text style={Styles.txtClock}>{item.editedTimeSendAt}</Text>
-											</View>
-											<Text style={Styles.eventDateTime}>{item.editedDataTimeStartAt}</Text>
-										</View>
-									</TouchableOpacity>
-								</View>
 							}
-						/>
+						)}
+						data={this.state.dataComponent}
+						renderItem={({ item }) =>
+
+							<styled.flatListContainer>
+								<styled.flatListHeader>
+									<styled.headerLabelView>
+										<styled.headerLabel>{`${item.weekday}, ${item.sendAt.getUTCDate()} de ${item.curencyMonth}`}</styled.headerLabel>
+									</styled.headerLabelView>
+									<styled.headerLineView>
+										<styled.headerLine />
+									</styled.headerLineView>
+								</styled.flatListHeader>
+
+								<styled.btnEvent
+									onPress={() => { navigation.navigate("EventDetails", { item: item }) }}
+								>
+
+									<styled.eventLateralMarker />
+									{item.image != null ?
+										<styled.imageView>
+											<styled.cardImage
+												source={{
+													uri: item.image,
+												}}
+												resizeMode="contain"
+											/>
+										</styled.imageView>
+										:
+										null
+									}
+
+									<styled.eventContent>
+										<styled.txtEvent>EVENTOS</styled.txtEvent>
+										<styled.eventTitle ellipsizeMode='tail' numberOfLines={1}>{`${item.title}`}</styled.eventTitle>
+										<styled.clockView>
+											<EvilIcons
+												size={widthPercent * 6.5}
+												color="#666666"
+												name={'clock'}
+											/>
+											<styled.txtClock>{item.editedTimeSendAt}</styled.txtClock>
+										</styled.clockView>
+										<styled.txtEventDateTime>{item.editedDataTimeStartAt}</styled.txtEventDateTime>
+									</styled.eventContent>
+								</styled.btnEvent>
+							</styled.flatListContainer>
+						}
+					/>
 					{!this.state.loadMore
 						?
-						<View style={Styles.loadView}>
-							<Text style={Styles.txtLoadingEvents}>{`Carregando...`}</Text>
-						</View>
+						<styled.loadView>
+							<styled.txtLoadingEvents>{`Carregando...`}</styled.txtLoadingEvents>
+						</styled.loadView>
 						:
 						null
 					}
 
-				</Drawer>
+				</styled.drawer>
 
 				<StatusBar style='auto' />
-			</View>
+			</styled.Container>
 		)
 	}
 }
-
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: '#fff',
-		alignItems: 'center',
-		justifyContent: 'center'
-	},
-	containerLoading: {
-		flex: 1,
-		justifyContent: 'center',
-	},
-	horizontal: {
-		flexDirection: 'row',
-		justifyContent: 'space-around',
-		padding: 10,
-	},
-})
-
 
 
 export default function ({ props, route }) {

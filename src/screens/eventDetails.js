@@ -14,6 +14,7 @@ const widthPercent = (screenWidth / 100)
 const heightPercent = (screenHeight / 100)
 
 const auth = require('../functions/auth')
+const styled = require('../styledComponets/styles')
 
 class EventDetails extends React.Component {
     constructor(props) {
@@ -36,43 +37,41 @@ class EventDetails extends React.Component {
         const { navigation, item } = this.props
         
         return (
-            <View style={Styles.container}>
-                <ImageBackground source={require('../assets/imgs/image.jpeg')} style={Styles.eventDetailsBackground}>
-                    <View style={Styles.containerDetails}>
-                        <View style={Styles.headersDetailsView}>
-                            <View style={Styles.dateView}>
-                                <View style={Styles.txtDayMonthView}>
-                                    <Text style={Styles.txtDayMonth}>{item.sendAt.getDate()}</Text>
-                                    <Text style={Styles.txtMonth}>{item.curencyMonth.substring(0, 3).toUpperCase()}</Text>
-                                </View>
-                            </View>
-                            <View style={Styles.eventDetailsTitleView}>
-                                <Text style={Styles.eventDetailsTitle}>{item.title}</Text>
-                            </View>
-                        </View>
+            <styled.Container>
+                <styled.eventDetailsBackground source={{uri: item.image}}>
+                    <styled.containerDetails>
+                        <styled.headersDetailsView>
+                            <styled.dateView>
+                                <styled.txtDayMonthView>
+                                    <styled.txtDayMonth>{item.sendAt.getDate()}</styled.txtDayMonth>
+                                    <styled.txtMonth>{item.curencyMonth.substring(0, 3).toUpperCase()}</styled.txtMonth>
+                                </styled.txtDayMonthView>
+                            </styled.dateView>
+                            <styled.eventDetailsTitleView>
+                                <styled.eventDetailsTitle>{item.title}</styled.eventDetailsTitle>
+                            </styled.eventDetailsTitleView>
+                        </styled.headersDetailsView>
 
-                        <View style={Styles.headersClockDetailsView}>
+                        <styled.headersClockDetailsView>
                             <EvilIcons
-                                style={Styles.eventDetailsClock}
                                 size={widthPercent * 6.5}
                                 color="#666666"
-                                containerStyle={{ backgroundColor: "#F00" }}
                                 name={'clock'}
                             />
-                            <Text style={Styles.txtClock}>{item.editedTimeSendAt}</Text>
+                            <styled.txtClock>{item.editedTimeSendAt}</styled.txtClock>
 
-                        </View>
+                        </styled.headersClockDetailsView>
 
-                        <View style={Styles.descriptionView}>
+                        <styled.descriptionView>
                             <ScrollView>
-                                <Text style={Styles.txtEventDescription}>{item.description}</Text>
+                                <styled.txtEventDescription>{item.description}</styled.txtEventDescription>
                             </ScrollView>
-                        </View>
+                        </styled.descriptionView>
 
-                    </View>
-                </ImageBackground>
+                    </styled.containerDetails>
+                </styled.eventDetailsBackground>
                 <StatusBar style='auto' />
-            </View >
+            </styled.Container >
         )
     }
 }

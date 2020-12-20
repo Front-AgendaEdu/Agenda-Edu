@@ -1,13 +1,14 @@
 import { StatusBar } from 'expo-status-bar'
 import React from 'react'
 import Expo from "expo"
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { StyleSheet, Text, View, ActivityIndicator, Image } from 'react-native'
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import Styles from '../styles/styles'
 import AsyncStorage from '@react-native-community/async-storage'
 import * as Font from 'expo-font'
 
 const auth = require('../functions/auth')
+const styled = require('../styledComponets/styles')
 
 class Configuration extends React.Component {
     constructor(props) {
@@ -26,7 +27,6 @@ class Configuration extends React.Component {
             'SFProDisplay-Bold': require('../assets/fonts/SFProDisplay-Bold.ttf'),
             'SFProDisplay-Semibold': require('../assets/fonts/SFProDisplay-Semibold.ttf'),
             'SFProDisplay-Medium': require('../assets/fonts/SFProDisplay-Medium.ttf'),
-            
         })
         this.setState({ loading: false });
 
@@ -50,10 +50,11 @@ class Configuration extends React.Component {
             return <ActivityIndicator />
         }
         return (
-            <View style={styles.container}>
-                <Text style={Styles.txtLoading}>{this.state.label}</Text>
+            <styled.configContainer>
+                <styled.configIcon source={require('../assets/imgs/icon.png')}/>
+                <styled.txtLoading>{this.state.label}</styled.txtLoading>
                 <StatusBar style='auto' />
-            </View>
+            </styled.configContainer>
         )
     }
 }
@@ -61,7 +62,7 @@ class Configuration extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#733DBE',
         alignItems: 'center',
         justifyContent: 'center'
     }

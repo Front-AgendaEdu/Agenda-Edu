@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, TextInput, Dimensions, KeyboardAvoidingView, To
 import { useNavigation, CommonActions } from '@react-navigation/native'
 import Styles from '../styles/styles'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+// import StyledComponents from '../styled-componets/styles'
+// import {Container ,TextInputLabel} from '../styledComponets/styles'
 
 
 const screenHeight = Math.round(Dimensions.get('window').height)
@@ -18,8 +20,10 @@ const DismissKeyboard = ({ children }) => (
     </TouchableWithoutFeedback>
 );
 
+
 global.isVisiblePsw = false
 const auth = require('../functions/auth')
+const styled = require('../styledComponets/styles')
 
 export class Login extends React.Component {
     constructor(props) {
@@ -35,7 +39,7 @@ export class Login extends React.Component {
     }
 
     async componentDidMount() {
-        
+
     }
 
     render() {
@@ -44,21 +48,20 @@ export class Login extends React.Component {
         return (
             <DismissKeyboard>
                 <KeyboardAvoidingView style={Styles.container} behavior="padding" enabled={Platform.OS === 'ios' ? true : false} >
-
-                    <View style={Styles.formContainer}>
-                        <View style={Styles.containerLoginInput}>
-                            <Text style={Styles.labelMain}>
+                    <styled.Container>
+                        <styled.containerLoginInput>
+                            <styled.LoginTitle>
                                 Faça seu login 🔑
-                            </Text>
+                            </styled.LoginTitle>
 
-                            <Text style={Styles.labelEmail}>
+                            <styled.TextInputLabel>
                                 Email ou usuário
-                            </Text>
+                            </styled.TextInputLabel>
 
-                            <View style={Styles.ViewLoginInput}>
-                                <TextInput
+                            <styled.InputView>
+                                <styled.EmailInput
+                                    focusColor={this.state.borderColorEmail}
                                     testID={'inputEmail'}
-                                    style={[Styles.loginInput, { borderColor: this.state.borderColorEmail }]}
                                     value={this.state.email}
                                     onFocus={() => { this.setState({ borderColorEmail: '#733DBE' }), global.inputEmail = true }}
                                     onBlur={() => { this.setState({ borderColorEmail: '#ABB1B7' }) }}
@@ -69,63 +72,53 @@ export class Login extends React.Component {
                                     keyboardType={'email-address'}
 
                                 />
-                                <MaterialCommunityIcons
-                                    style={Styles.EmailInputIcon}
+                                <styled.EmailInputIcon
                                     name={'email-outline'}
-                                    size={widthPercent * 8}
-                                    color={'#AAAAAA'}
                                 />
-                            </View>
-                        </View>
+                            </styled.InputView>
+                        </styled.containerLoginInput>
 
-                        <View style={Styles.containerPsw}>
-
-                            <Text style={Styles.labelEmail}>
+                        <styled.containerPsw >
+                            <styled.TextInputLabel>
                                 Senha
-                        </Text>
+                            </styled.TextInputLabel>
 
-                            <View style={Styles.ViewLoginInput}>
-                                <TextInput
+                            <styled.InputView>
+                                <styled.PswlInput
                                     testID={'inputPassword'}
-                                    style={[Styles.loginInput, { borderColor: this.state.borderColorPsw }]}
+                                    focusColor={this.state.borderColorPsw}
                                     value={this.state.psw}
-                                    onFocus={() => { this.setState({ borderColorPsw: '#733DBE' }), global.inputPassword = true}}
+                                    onFocus={() => { this.setState({ borderColorPsw: '#733DBE' }), global.inputPassword = true }}
                                     onBlur={() => { this.setState({ borderColorPsw: '#ABB1B7' }) }}
                                     autoCapitalize={'none'}
                                     onChangeText={value => { this.setState({ psw: value }) }}
                                     placeholderTextColor={'rgba(0, 0, 0, 0.5)'}
                                     underlineColorAndroid='transparent'
                                     secureTextEntry={!this.state.isVisiblePsw}
-
                                 />
-                                <TouchableOpacity
+                                <styled.BtnView
                                     testID={'showPswBtn'}
-                                    style={Styles.btnChangeVisblePsw}
                                     onPress={() => { this.setState({ isVisiblePsw: !this.state.isVisiblePsw }), global.isVisiblePsw = !this.state.isVisiblePsw }}
-
                                 >
-                                    <MaterialCommunityIcons
+                                    <styled.PswlInputIcon
                                         name={this.state.isVisiblePsw == true ? 'eye-off' : 'eye'}
-                                        size={widthPercent * 8}
-                                        color={'#AAAAAA'}
                                     />
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View >
+                                </styled.BtnView>
+                            </styled.InputView>
+                        </styled.containerPsw>
+                    </styled.Container>
 
 
-                    <View style={Styles.btnEntrarContainer}>
-                        <TouchableOpacity
-                            style={Styles.btnEntrar}
+                    <styled.btnEntrarContainer>
+                        <styled.btnEntrar
                             onPress={() => { auth.login(this.state.email, this.state.psw, true, navigation) }}
                             testID={'entryButton'}
 
                         >
-                            <Text style={Styles.labelBtnEntrar} testID={'textButton'}>Entrar</Text>
-                        </TouchableOpacity>
+                            <styled.labelBtn>Entrar</styled.labelBtn>
+                        </styled.btnEntrar>
                         <StatusBar style='auto' />
-                    </View>
+                    </styled.btnEntrarContainer>
 
                 </KeyboardAvoidingView>
             </DismissKeyboard>
@@ -138,6 +131,3 @@ export default function ({ props, route }) {
 
     return <Login {...props} navigation={navigation} />
 }
-
-
-
