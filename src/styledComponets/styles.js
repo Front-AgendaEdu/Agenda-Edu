@@ -294,8 +294,8 @@ export const loadView = styled.View`
 
 export const txtLoadingEvents = styled.Text`
   font-family: 'SFProDisplay-Bold';
-  font-size: ${Platform.select({ iOS: widthPercent * 5, android: widthPercent * 7 })};
-  margin-bottom: ${Platform.select({ iOS: widthPercent * 1, android: widthPercent * 0 })};
+  font-size: ${widthPercent * 5};
+  margin-bottom: ${widthPercent * 1}; 
   color: #FFF;
 `;
 
@@ -392,3 +392,5 @@ export const txtEventDescription = styled.Text`
 `;
 
 
+  /* font-size: ${Platform.select({ iOS: widthPercent * 5, android: widthPercent * 7 })}; */
+  /* margin-bottom: ${Platform.select({ iOS: widthPercent * 1, android: widthPercent * 0 })}; */

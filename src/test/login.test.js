@@ -21,6 +21,7 @@ import { create, act } from 'react-test-renderer'
 import { Login } from '../screens/login'
 import renderer from 'react-test-renderer'
 
+
 const LoginComponent = create(<Login />)
 
 describe('##SNAPSHOT##', () => {

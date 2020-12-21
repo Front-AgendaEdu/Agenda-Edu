@@ -31,54 +31,65 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
 >
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#FFF",
-        "flex": 1,
-        "flexDirection": "column",
-        "height": null,
-        "justifyContent": "center",
-        "width": null,
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "backgroundColor": "#FFF",
+          "flexBasis": 0,
+          "flexGrow": 1,
+          "flexShrink": 1,
+          "justifyContent": "center",
+        },
+      ]
     }
   >
     <View
-      style={Object {}}
+      style={
+        Array [
+          Object {},
+        ]
+      }
     >
       <Text
         style={
-          Object {
-            "color": "#333333",
-            "fontFamily": "SFProDisplay-Bold",
-            "fontSize": 54,
-            "marginBottom": 60,
-          }
+          Array [
+            Object {
+              "color": "#333333",
+              "fontFamily": "SFProDisplay-Bold",
+              "fontSize": 54,
+              "marginBottom": 60,
+            },
+          ]
         }
       >
         Faça seu login 🔑
       </Text>
       <Text
         style={
-          Object {
-            "color": "#666666",
-            "fontFamily": "SFProDisplay-Regular",
-            "fontSize": 31.5,
-            "marginBottom": 11.25,
-          }
+          Array [
+            Object {
+              "color": "#666666",
+              "fontFamily": "SFProDisplay-Regular",
+              "fontSize": 31.5,
+            },
+          ]
         }
       >
         Email ou usuário
       </Text>
       <View
         style={
-          Object {
-            "flexDirection": "row",
-          }
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+          ]
         }
       >
         <TextInput
           allowFontScaling={true}
           autoCapitalize="none"
+          focusColor="#ABB1B7"
           keyboardType="email-address"
           onBlur={[Function]}
           onChangeText={[Function]}
@@ -88,9 +99,9 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#FFF",
-                "borderColor": "#733DBE",
+                "borderColor": "#ABB1B7",
                 "borderRadius": 7.5,
+                "borderStyle": "solid",
                 "borderWidth": 1,
                 "color": "#333333",
                 "fontFamily": "SFProDisplay-Regular",
@@ -100,9 +111,6 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
                 "paddingRight": "14%",
                 "width": 654,
               },
-              Object {
-                "borderColor": "#ABB1B7",
-              },
             ]
           }
           testID="inputEmail"
@@ -110,48 +118,58 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
           value="student@ae.com"
         />
         <Icon
-          color="#AAAAAA"
           name="email-outline"
-          size={60}
           style={
-            Object {
-              "alignSelf": "center",
-              "position": "absolute",
-              "right": 22.5,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "alignSelf": "center",
+                "color": "#AAAAAA",
+                "fontSize": 60,
+                "justifyContent": "center",
+                "position": "absolute",
+                "right": 22.5,
+              },
+            ]
           }
         />
       </View>
     </View>
     <View
       style={
-        Object {
-          "marginTop": 26.68,
-        }
+        Array [
+          Object {
+            "marginTop": 26.68,
+          },
+        ]
       }
     >
       <Text
         style={
-          Object {
-            "color": "#666666",
-            "fontFamily": "SFProDisplay-Regular",
-            "fontSize": 31.5,
-            "marginBottom": 11.25,
-          }
+          Array [
+            Object {
+              "color": "#666666",
+              "fontFamily": "SFProDisplay-Regular",
+              "fontSize": 31.5,
+            },
+          ]
         }
       >
         Senha
       </Text>
       <View
         style={
-          Object {
-            "flexDirection": "row",
-          }
+          Array [
+            Object {
+              "flexDirection": "row",
+            },
+          ]
         }
       >
         <TextInput
           allowFontScaling={true}
           autoCapitalize="none"
+          focusColor="#ABB1B7"
           onBlur={[Function]}
           onChangeText={[Function]}
           onFocus={[Function]}
@@ -161,9 +179,9 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
           style={
             Array [
               Object {
-                "backgroundColor": "#FFF",
-                "borderColor": "#733DBE",
+                "borderColor": "#ABB1B7",
                 "borderRadius": 7.5,
+                "borderStyle": "solid",
                 "borderWidth": 1,
                 "color": "#333333",
                 "fontFamily": "SFProDisplay-Regular",
@@ -172,9 +190,6 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
                 "paddingLeft": "7%",
                 "paddingRight": "14%",
                 "width": 654,
-              },
-              Object {
-                "borderColor": "#ABB1B7",
               },
             ]
           }
@@ -196,20 +211,24 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
             Object {
               "alignItems": "center",
               "alignSelf": "center",
-              "height": 75,
               "justifyContent": "center",
               "opacity": 1,
               "position": "absolute",
               "right": 22.5,
-              "width": 75,
             }
           }
           testID="showPswBtn"
         >
           <Icon
-            color="#AAAAAA"
             name="eye"
-            size={60}
+            style={
+              Array [
+                Object {
+                  "color": "#AAAAAA",
+                  "fontSize": 60,
+                },
+              ]
+            }
           />
         </View>
       </View>
@@ -217,12 +236,13 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
   </View>
   <View
     style={
-      Object {
-        "alignItems": "center",
-        "backgroundColor": "#FFF",
-        "justifyContent": "center",
-        "width": "100%",
-      }
+      Array [
+        Object {
+          "alignItems": "center",
+          "justifyContent": "center",
+          "width": "100%",
+        },
+      ]
     }
   >
     <View
@@ -253,13 +273,14 @@ exports[`##SNAPSHOT## Login Snapshot 1`] = `
     >
       <Text
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "SFProDisplay-Semibold",
-            "fontSize": 37.5,
-          }
+          Array [
+            Object {
+              "color": "#FFFFFF",
+              "fontFamily": "SFProDisplay-Semibold",
+              "fontSize": 37.5,
+            },
+          ]
         }
-        testID="textButton"
       >
         Entrar
       </Text>
